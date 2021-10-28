@@ -1,0 +1,127 @@
+$CommonColor: #1a73e8;
+
+.Main-Container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+  margin-top: 50px;
+
+  span {
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  header {
+    font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+    margin-top: 50px;
+    margin-left: 40px;
+  }
+
+  h1 {
+    font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 40px;
+  }
+
+  .Form-Content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    box-sizing: border-box;
+    form {
+      box-sizing: border-box;
+    }
+  }
+
+  .input-div {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 5px;
+    padding: 0px;
+  }
+
+  .extra {
+    margin-left: 25px;
+    margin-top: 20px;
+  }
+
+  .div {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 20px;
+  }
+
+  .email {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 14px;
+    color: $CommonColor;
+    font-weight: bolder;
+  }
+
+  .pwd {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-left: 40px;
+  }
+
+  .pwd div:last-child {
+    font-size: 12px;
+    padding-left: 10px;
+    margin-top: 0px;
+  }
+
+  mat-form-field {
+    width: 40%;
+    font-size: 12px;
+    margin-right: 25px;
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    margin-left: 40px;
+  }
+
+  .button-div {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 26px;
+    margin-bottom: 40px;
+    margin-right: 65px;
+    box-sizing: border-box;
+    margin-top: 60px;
+  }
+
+  .next {
+    background-color: $CommonColor;
+    color: white;
+    width: 25%;
+  }
+
+  .Signin {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 14px;
+    color: $CommonColor;
+    font-weight: bolder;
+  }
+
+  .div-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -160px;
+    margin-left: -50px;
+    width: 250px;
+    img {
+      width: 250px;
+    }
+    figcaption {
+      font-size: 16px;
+      width: 80%;
+      text-align: center;
+    }
+  }
+}

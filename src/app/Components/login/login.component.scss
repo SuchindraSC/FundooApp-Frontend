@@ -1,0 +1,93 @@
+$CommonColor: #1a73e8;
+
+.Login {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
+  margin-top: 100px;
+  
+  .Page{
+      width: 420px;
+      height: 500px;
+  }
+  
+  header{
+      font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+      font-size: 25px;
+      text-align: center;
+      margin-top: 40px;
+  }
+
+  h1{
+      font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+      font-size: 25px;
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  h2{
+      font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+      font-size: 17px;
+      text-align: center;
+      margin-top: -10px;
+      font-weight: normal;
+  }
+
+  .Login-Content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    form {
+      box-sizing: border-box;
+    }
+  }
+  
+  .forgotPassword{
+      margin-top: -5px;
+      margin-left: -15px;
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    margin-left: 0px;
+  }
+
+  .pwd{
+      font-size: 14px;
+      color: $CommonColor;
+  }
+
+  .div{
+      margin-top: -15px;
+  }
+
+  mat-form-field {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .button-div{
+      display: flex;
+      justify-content: space-between;
+      margin-left: -10px;
+      margin-bottom: 40px;
+      margin-right: 0px;
+      box-sizing: border-box;
+      margin-top: 50px;
+  }
+
+  .Signup {
+    font-family: "Google Sans", Arial, sans-serif;
+    font-size: 14px;
+    color: $CommonColor;
+    font-weight: bolder;
+  }
+
+  .Signin{
+      background-color: $CommonColor;
+      color: white;
+      width: 25%;
+  }
+}
