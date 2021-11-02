@@ -1,0 +1,85 @@
+<div class="over-con">
+  <div style="display: flex; justify-content: space-between">
+    <div>
+      <i
+        style="cursor: pointer"
+        class="material-icons-outlined i-pin"
+        *ngIf="!notes['is_Pin']"
+        (click)="$event.stopPropagation(); pin(notes)"
+        >push_pin</i
+      >
+      <i
+        style="cursor: pointer"
+        class="material-icons i-pin"
+        *ngIf="notes['is_Pin']"
+        (click)="$event.stopPropagation(); pin(notes)"
+        >push_pin</i
+      >
+    </div>
+  </div>
+  <div>
+    <div class="i-div">
+      <i
+        class="material-icons-outlined"
+        matTooltip="Remind me"
+        (click)="$event.stopPropagation()"
+        >notifications_none</i
+      >
+      <i
+        class="material-icons-outlined"
+        matTooltip="Collaborator"
+        (click)="$event.stopPropagation()"
+        >person_add_alt_1</i
+      >
+      <i
+        class="material-icons-outlined"
+        matTooltip="Change Color"
+        [matMenuTriggerFor]="Color"
+        (click)="$event.stopPropagation()"
+        >color_lens</i
+      >
+      <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
+        <div
+          class="a-color"
+          *ngFor="let color of colourArr"
+          matTooltip="{{ color.tooltip }}"
+          [ngStyle]="{ 'background-color': color.colour }"
+          (click)="setColour(notes, color.colour)"
+        >
+          <i class="material-icons" *ngIf="color.colour == notes['color']"
+            >check</i
+          >
+        </div>
+      </mat-menu>
+      <i class="material-icons-outlined" (click)="$event.stopPropagation()"
+        >image</i
+      >
+      <i
+        mat-list-icon
+        class="material-icons-outlined"
+        *ngIf="!notes.is_Archieve"
+        matTooltip="Archive"
+        (click)="archive(notes); $event.stopPropagation()"
+        >archive</i
+      >
+      <i
+        class="material-icons-outlined"
+        matTooltip="Unarchive"
+        mat-list-icon
+        *ngIf="notes.is_Archieve"
+        (click)="unarchive(notes); $event.stopPropagation()"
+        >unarchive</i
+      >
+      <i
+        class="material-icons-outlined more"
+        matTooltip="More"
+        [matMenuTriggerFor]="menu"
+        (click)="$event.stopPropagation()"
+        >more_vert</i
+      >
+      <mat-menu #menu="matMenu" class="i-option">
+        <button mat-menu-item (click)="addTrash(notes)">Delete Note</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

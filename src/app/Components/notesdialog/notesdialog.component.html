@@ -1,0 +1,90 @@
+<mat-card
+class="n-mat"
+[ngStyle]="{ 'background-color': setColor }"
+>
+<form class="example-form" [formGroup]="NotesForm">
+  <div class="t-div t-main">
+    <input
+      type="text"
+      class="title"
+      id="temp"
+      placeholder="Title"
+      formControlName = "title"
+      [ngModel]="TitleNote"
+      [ngStyle]="{ 'background-color': setColor }"
+    />
+    <i
+      matTooltip="Pin the note"
+      class="material-icons-outlined i-pin"
+      (click)="pinned=!pinned;isarchive=false"
+      *ngIf="!pinned"
+      >push_pin</i
+    >
+    <i
+      matTooltip="Unpin the note"
+      class="material-icons i-pin"
+      (click)="pinned=!pinned;isarchive=false"
+      *ngIf="pinned"
+      >push_pin</i
+    >
+  </div>
+  <div class="n-div">
+    <textarea
+      id="notes"
+      class="notes"
+      placeholder="Take a note..."
+      formControlName = "Desc"
+      [ngModel]="DescNote"
+      (keyup)="autogrow()"
+      [ngStyle]="{ 'background-color': setColor }"
+    ></textarea>
+  </div>
+</form>
+</mat-card>
+<div>
+    <div
+      class="i-main"
+      [ngStyle]="{ 'background-color': setColor }"
+    >
+      <div class="i-div">
+        <i
+          class="material-icons-outlined"
+          matTooltip="Remind me"
+          >notifications_none</i>
+        <i
+          class="material-icons-outlined"
+          matTooltip="Collaborator"
+          >person_add_alt_1</i
+        >
+        <i
+          class="material-icons-outlined"
+          matTooltip="Change Color"
+          [matMenuTriggerFor]="Color"
+          >color_lens</i
+        >
+        <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
+          <div
+            class="a-color"
+            *ngFor="let color of colourArr"
+            matTooltip="{{ color.tooltip }}"
+            (click)="setColor = color.colour"
+            [ngStyle]="{ 'background-color': color.colour }"
+          >
+            <i class="material-icons" *ngIf="setColor == color.colour">check</i>
+          </div>
+        </mat-menu>
+        <i class="material-icons-outlined" matTooltip="Add image">image</i>
+        <i class="material-icons-outlined" [matTooltip]="isarchive?'Unarchive':'Archive'" (click)="isarchive=!isarchive;pinned=false">archive</i>
+        <i
+          class="material-icons-outlined more"
+          matTooltip="More"
+          >more_vert</i
+        >
+      <button
+        mat-button
+        (click)="update()"
+        >
+        Close
+      </button>
+    </div>
+  </div>

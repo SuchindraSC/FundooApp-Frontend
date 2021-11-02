@@ -27,6 +27,18 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 //import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { NoteComponent } from './Components/note/note.component';
+import { GetnotecomponentComponent } from './Components/getnotecomponent/getnotecomponent.component';
+import { NotesdialogComponent } from './Components/notesdialog/notesdialog.component';
+import { IconComponent } from './Components/icon/icon.component';
+import { GettrashComponent } from './Components/gettrash/gettrash.component';
+import { GetarchieveComponent } from './Components/getarchieve/getarchieve.component';
+
+
 
 @NgModule({
   declarations: [
@@ -36,6 +48,12 @@ import { MatDialogModule } from "@angular/material/dialog";
     ForgotpasswordComponent,
     ResetpasswordComponent,
     DashboardComponent,
+    NoteComponent,
+    GetnotecomponentComponent,
+    NotesdialogComponent,
+    IconComponent,
+    GettrashComponent,
+    GetarchieveComponent,
     //PageNotFoundComponent,
   ],
   imports: [
@@ -56,6 +74,10 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatSidenavModule,
     MatDialogModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

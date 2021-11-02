@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpServiceService } from '../HttpService/http-service.service';
 import { environment } from 'src/environments/environment';
-import { HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +46,5 @@ export class UserserviceService {
       `${environment.baseUrl}api/resetpassword`,
       params
     );
-  }
-  check(data: any){
-    let params = new HttpParams().set('token', data);
-    return this.httpService.post(`${environment.baseUrl}api/checkForgot`, params)
   }
 }

@@ -65,7 +65,11 @@
         [matMenuTriggerFor]="menu"
         aria-label="Example icon-button with a menu"
       >
-        <i class="material-icons person" matTooltip="Account {{ Name }} {{ Email }}">person</i>
+        <i
+          class="material-icons person"
+          matTooltip="Account {{ Name }} {{ Email }}"
+          >person</i
+        >
       </button>
       <mat-menu #menu="matMenu" class="acc-menu">
         <i class="material-icons person menuIcon">person</i>
@@ -74,7 +78,9 @@
           <p class="email">{{ Email }}</p>
         </div>
         <mat-divider></mat-divider>
-        <button class="logout" (click)="Logout()">Logout from you account</button>
+        <button class="logout" (click)="Logout()">
+          Logout from you account
+        </button>
       </mat-menu>
     </div>
   </mat-toolbar>
@@ -131,6 +137,22 @@
       >
         <i class="material-icons">delete_outline</i>
         <p class="iconName">Trash</p>
+      </div>
+    </div>
+    <div class="NoteContent" [class]="!expand ? 'expand' : ''">
+      <div
+        Create-Note
+        class="c-note"
+        *ngIf="isOption != 4 && isOption != 5"
+      ></div>
+      <div>
+        <app-getnotecomponent *ngIf="isOption == 1"></app-getnotecomponent>
+      </div>
+      <div>
+        <app-gettrash *ngIf = "isOption == 5"></app-gettrash>
+      </div>
+      <div>
+        <app-getarchieve *ngIf= "isOption == 4"></app-getarchieve>
       </div>
     </div>
   </div>

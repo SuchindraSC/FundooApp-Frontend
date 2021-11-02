@@ -1,0 +1,56 @@
+<div>
+  <div class="pin-head" *ngIf="pin_dis">Pinned</div>
+  <div class="overall-div">
+    <ng-container *ngFor="let notes of userNotes?.reverse()">
+      <mat-card
+        class="card-disp"
+        (click)="openNoteDialog(notes)"
+        [ngStyle]="{ 'background-color': notes['color'] }"
+        *ngIf="notes['is_Pin']"
+      >
+        <img
+          src="{{ notes['image'] }}"
+          alt=""
+          *ngIf="notes['image'] != null && notes['image'] != ' '"
+          style="width: 100%"
+        />
+        <div class="d-tit">
+          {{ notes["title"] }}
+        </div>
+        <div class="d-con">
+          {{ notes["description"] }}
+        </div>
+        <app-icon [notes]="notes"></app-icon>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
+<div>
+  <div class="pin-head" *ngIf="pin_dis">Others</div>
+  <div class="overall-div">
+    <ng-container *ngFor="let notes of userNotes">
+      <mat-card
+        class="card-disp"
+        (click)="openNoteDialog(notes)"
+        [ngStyle]="{ 'background-color': notes['color'] }"
+        *ngIf="!notes['is_Pin']"
+      >
+        <div>
+          <img
+            src="{{ notes['image'] }}"
+            alt=""
+            *ngIf="notes['image'] != null && notes['image'] != ' '"
+            style="width: 100%"
+          />
+        </div>
+        <div class="d-tit" style="font-weight: bold">
+          {{ notes["title"] }}
+        </div>
+        <div class="d-con" style="margin-bottom: 30px">
+          {{ notes["description"] }}
+        </div>
+        <app-icon [notes]="notes"></app-icon>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

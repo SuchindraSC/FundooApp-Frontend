@@ -344,12 +344,12 @@ mat-divider {
   padding: 0px 80px;
   align-items: center;
 }
-@media only screen and (max-width: 1186px) {
-  .icons {
-    width: 10%;
-  }
-}
-@media only screen and (max-width: 760px) {
+//   @media only screen and (max-width: 1186px) {
+//   .icons {
+//     width: 10%;
+//   }
+// }
+@media only screen and (max-width: 576px) {
   .SideNav.expand,
   .SideNav {
     width: 80px !important;
@@ -391,4 +391,3 @@ mat-divider {
     padding: 55px 15px;
   }
 }
-

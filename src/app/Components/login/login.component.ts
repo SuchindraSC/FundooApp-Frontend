@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
         console.log(result)
         this.snackBar.open(result.message, '', { duration: 30000 });
         if (result.status == true) {
-          this.LocalStorage(result.data);
+          this.LocalStorage(result.data, 'FundooUser');
+          this.LocalStorage(result.tokenString, 'FundooNotesJWT')
           this.route.navigateByUrl('/dashboard');
         }
       },
@@ -50,13 +51,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  LocalStorage(data: any){
-    var user = localStorage.getItem('FundooUser');
+  LocalStorage(data: any , name: any){
+    var user = localStorage.getItem(name);
     if (user != null){
-      localStorage.removeItem('FundooUser');
+      localStorage.removeItem(name);
     }
     user = data;
-    localStorage.setItem('FundooUser',JSON.stringify(user));
+    localStorage.setItem(name,JSON.stringify(user));
   }
 
   checkLocalStorage(){

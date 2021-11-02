@@ -1,0 +1,118 @@
+<div>
+  <mat-card (click)="dispNote = !dispNote" *ngIf="!dispNote">
+    <div class="t-div">
+      <input type="text" class="title" placeholder="Take a note..." />
+      <i class="material-icons-outlined t-icons">check</i>
+      <i class="material-icons-outlined t-icons">image</i>
+    </div>
+  </mat-card>
+  <mat-card
+    class="n-mat"
+    *ngIf="dispNote"
+    [ngStyle]="{ 'background-color': setColor }"
+  >
+    <div class="pin-class">
+      <div>
+        <i
+          matTooltip="Pin the note"
+          class="material-icons-outlined i-pin"
+          (click)="pinned = !pinned; isarchive = false"
+          *ngIf="!pinned"
+          >push_pin</i
+        >
+        <i
+          matTooltip="Unpin the note"
+          class="material-icons i-pin"
+          (click)="pinned = !pinned; isarchive = false"
+          *ngIf="pinned"
+          >push_pin</i
+        >
+      </div>
+    </div>
+    <form class="example-form" [formGroup]="NotesForm">
+      <div class="t-div t-main">
+        <input
+          type="text"
+          class="title"
+          id="temp"
+          formControlName="title"
+          placeholder="Title"
+          (change)="TitleNote = checkMenu($event)"
+          [ngModel]="TitleNote"
+          [ngStyle]="{ 'background-color': setColor }"
+        />
+      </div>
+      <div class="n-div">
+        <textarea
+          id="notes"
+          class="notes"
+          formControlName="Desc"
+          placeholder="Take a note..."
+          (change)="DescNote = checkMenu($event)"
+          [ngModel]="DescNote"
+          (keyup)="autogrow()"
+          [ngStyle]="{ 'background-color': setColor }"
+        ></textarea>
+      </div>
+    </form>
+  </mat-card>
+  <div>
+    <div
+      class="i-main"
+      *ngIf="dispNote"
+      [ngStyle]="{ 'background-color': setColor }"
+    >
+      <div class="i-div">
+        <i class="material-icons-outlined" matTooltip="Remind me"
+          >notifications_none</i
+        >
+        <i
+          class="material-icons-outlined"
+          matTooltip="Collaborator"
+          >person_add_alt_1</i
+        >
+        <i
+          class="material-icons-outlined"
+          matTooltip="Change Color"
+          [matMenuTriggerFor]="Color"
+          >color_lens</i
+        >
+        <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
+          <div
+            class="a-color"
+            *ngFor="let color of colourArr"
+            matTooltip="{{ color.tooltip }}"
+            (click)="setColor = color.colour"
+            [ngStyle]="{ 'background-color': color.colour }"
+          >
+            <i class="material-icons" *ngIf="setColor == color.colour">check</i>
+          </div>
+        </mat-menu>
+        <i class="material-icons-outlined" (click)="$event.stopPropagation()"
+          >image</i
+        >
+        <i
+          class="material-icons-outlined"
+          [matTooltip]="isarchive ? 'Unarchive' : 'Archive'"
+          (click)="isarchive = !isarchive; pinned = false"
+          >archive</i
+        >
+        <i class="material-icons-outlined more" matTooltip="More">more_vert</i>
+      </div>
+      <button
+        mat-button
+        (click)="
+          createNote();
+          TitleNote = '';
+          DescNote = '';
+          dispNote = !dispNote;
+          setColor = 'white';
+          pinned = false;
+          isarchive = false
+        "
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

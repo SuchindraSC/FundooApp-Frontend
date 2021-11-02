@@ -32,7 +32,6 @@ export class ForgotpasswordComponent implements OnInit {
         if (result.status == true) {
           console.log(result);
           this.router.navigateByUrl('/login');
-          this.LocalStorage(result.data);
         }
       },
       (error: HttpErrorResponse) => {
@@ -43,14 +42,5 @@ export class ForgotpasswordComponent implements OnInit {
         }
       }
     );
-  }
-
-LocalStorage(data: any) {
-    var reset = localStorage.getItem('Reset');
-    if (reset != null) {
-      localStorage.removeItem('Reset');
-    }
-    reset = data;
-    localStorage.setItem('Reset', JSON.stringify(reset));
   }
 }

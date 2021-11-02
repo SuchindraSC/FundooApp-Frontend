@@ -51,21 +51,5 @@ export class ResetpasswordComponent implements OnInit {
         }
       });
   }
-
-  check(data : any){
-    this.userService.check(data).subscribe((result:any) => {
-      if(result.message == 'Token Valid'){
-        this.email = result.data.Emailid
-        console.log(result.data);
-      }
-    },
-    (error: HttpErrorResponse) => {
-      if(error.error.message == 'Token Expired'){
-        this.disState = false;
-        this.snackBar.open("Token Expired! Please send another request!", '');
-      }
-    }
-    );
-  }
 }
 

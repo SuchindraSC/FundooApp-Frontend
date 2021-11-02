@@ -26,15 +26,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(private route: Router) {}
 
-  ngOnInit(): void { 
-  this.checkLocalStorage();
-  this.getFromLocalStorage();
-  //this.getLabels();
-}
+  ngOnInit(): void {
+    this.checkLocalStorage();
+    this.getFromLocalStorage();
+  }
 
   async getFromLocalStorage() {
     var user = JSON.parse(localStorage.getItem('FundooUser')!);
-    this.Name = user.firstName + " " + user.lastName;
+    this.Name = user.firstName + ' ' + user.lastName;
     this.Email = user.emailid;
     this.userId = user.userId;
   }
@@ -55,15 +54,4 @@ export class DashboardComponent implements OnInit {
       this.route.navigateByUrl('/login');
     }
   }
-  // getLabels() {
-  //   this.noteservice.getLabels().subscribe((result: any) => {
-  //     this.userLabels = result.data;
-  //     console.log(result);
-  //   });
-  // }
-  // openDialog() {
-  //   let dialogref = this.dialog.open(EditDialogComponent, {
-  //     data: { userId: this.userId, labels: this.userLabels },
-  //   });
-  //}
 }
