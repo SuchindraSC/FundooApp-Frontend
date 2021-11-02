@@ -359,6 +359,12 @@ mat-divider {
       }
     }
   }
+  .refresh-class{
+    display: none;
+  }
+  .overall-div{
+    padding: 0px !important;
+  }
   .NoteContent.expand,
   .NoteContent {
     width: calc(100% - 80px) !important;

@@ -271,3 +271,9 @@
   display: flex !important;
   justify-content: space-between !important;
 }
+
+@media only screen and (max-width: 576px) {
+.overall-div{
+    padding: 0px !important;
+  }
+}

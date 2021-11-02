@@ -28,14 +28,14 @@ export class ForgotpasswordComponent implements OnInit {
   forgot() {
     this.userService.Forgot(this.ForgotForm.value).subscribe(
       (result: any) => {
-        this.snackBar.open(result.message, '', { duration: 15000 });
+        this.snackBar.open(result.message, '', { duration: 3000 });
         if (result.status == true) {
           console.log(result);
           this.router.navigateByUrl('/login');
         }
       },
       (error: HttpErrorResponse) => {
-        this.snackBar.open(error.error.message, '', { duration: 15000 });
+        this.snackBar.open(error.error.message, '', { duration: 3000 });
         if (error.error.message == "User Doesn't Exist") {
           console.log(error.error.message);
           this.router.navigateByUrl('/register');

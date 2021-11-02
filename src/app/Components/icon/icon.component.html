@@ -12,7 +12,7 @@
         style="cursor: pointer"
         class="material-icons i-pin"
         *ngIf="notes['is_Pin']"
-        (click)="$event.stopPropagation(); pin(notes)"
+        (click)="$event.stopPropagation(); unpin(notes)"
         >push_pin</i
       >
     </div>

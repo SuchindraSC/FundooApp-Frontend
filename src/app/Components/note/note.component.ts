@@ -34,7 +34,7 @@ export class NoteComponent implements OnInit {
     { colour: '#e6c9a8', tooltip: 'Brown' },
     { colour: '#e8eaed', tooltip: 'Gray' },
   ];
-  addOnBlur = true;
+  //addOnBlur = true;
   tickcolor = 'white';
   setColor = 'white';
   pinned = false;

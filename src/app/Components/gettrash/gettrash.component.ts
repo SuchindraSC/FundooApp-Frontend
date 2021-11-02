@@ -41,17 +41,16 @@ export class GettrashComponent implements OnInit {
   }
 
   deleteFromTrash(note: any) {
-    console.log(note)
-    this.noteservice
-      .deleteFromTrash(note.notesId).subscribe((result: any) => {
-        this.data.changeMessage(true);
-        this.snack.open(result.message, '', { duration: 3000 });
-      });
+    console.log(note);
+    this.noteservice.deleteFromTrash(note.notesId).subscribe((result: any) => {
+      this.data.changeMessage(true);
+      this.snack.open(result.message, '', { duration: 3000 });
+    });
   }
 
   emptyTrash() {
-    var user = JSON.parse(localStorage.getItem('FundooUser')!)
-    this.noteservice.emptyTrash(user.userId).subscribe((result: any) => {
+    //var user = JSON.parse(localStorage.getItem('FundooUser')!);
+    this.noteservice.emptyTrash().subscribe((result: any) => {
       this.data.changeMessage(true);
       this.snack.open(result.message, '', { duration: 3000 });
     });

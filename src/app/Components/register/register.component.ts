@@ -55,10 +55,10 @@ export class RegisterComponent implements OnInit {
     this.userService.Register(this.RegisterForm.value).subscribe(
       (result: any) => {
         console.log(result);
-        this.snackBar.open(result.message, '', { duration: 30000 });
+        this.snackBar.open(result.message, '', { duration: 3000 });
       },
       (error: HttpErrorResponse) => {
-        this.snackBar.open(error.error.message, '', { duration: 30000 });
+        this.snackBar.open(error.error.message, '', { duration: 3000 });
         if (error.error.message == 'User Already Registered') {
           console.log(error.error.message);
           this.router.navigateByUrl('/login');

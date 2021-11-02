@@ -172,6 +172,28 @@ export class NoteService {
     );
   }
 
+  emptyTrash() {
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
+    console.log(this.user.userId)
+    return this.httpService.delete(
+      `${environment.baseUrl}api/emptytrash?userId=${parseInt(
+        this.user.userId
+      )}`,
+      true,
+      options
+    );
+  }
+
   archive(data: any) {
     this.token = localStorage.getItem('FundooNotesJWT');
     console.log(this.token, this.token.replace(/['"]+/g, ''));
@@ -234,36 +256,70 @@ export class NoteService {
     );
   }
 
-  emptyTrash(data: any) {
-    let params = new HttpParams().set('userId', data);
-    //this.getToken();
-    return this.httpService.post(
-      `${environment.baseUrl}/api/Trash/EmptyTrash`,
-      params,
-      true,
-      this.header
-    );
-  }
-
   pin(data: any) {
-    let params = new HttpParams().set('notesId', data);
-    //this.getToken();
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
     return this.httpService.put(
-      `${environment.baseUrl}/api/Pin`,
-      params,
+      `${environment.baseUrl}api/pinnotes?notesId=${data}`,
+      null,
       true,
-      this.header
+      options
     );
   }
 
-  updatecolor(data: any, color: any) {
-    let params = new HttpParams().set('noteId', data).set('color', color);
-    //this.getToken();
+  unpin(data: any) {
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
     return this.httpService.put(
-      `${environment.baseUrl}/api/UpdateColor`,
+      `${environment.baseUrl}api/unpinnotes?notesId=${data}`,
+      null,
+      true,
+      options
+    );
+  }
+
+  updatecolor(id: any, color: any) {
+    let params = {
+      NotesId: id,
+      Color: color,
+    };
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
+    return this.httpService.put(
+      `${environment.baseUrl}api/addcolor?NoteId=${id}&color=%23${color.replace(
+        /[#]+/g,
+        ''
+      )}`,
       params,
       true,
-      this.header
+      options
     );
   }
 }

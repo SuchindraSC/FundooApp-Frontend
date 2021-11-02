@@ -32,7 +32,6 @@ export class IconComponent implements OnInit {
   tickcolor = 'white';
   setColor = 'white';
 
-
   constructor(
     private noteservice: NoteService,
     private dialog: MatDialog,
@@ -66,7 +65,7 @@ export class IconComponent implements OnInit {
     });
   }
 
-  unarchive(notes: any){
+  unarchive(notes: any) {
     this.noteservice.unarchive(notes.notesId).subscribe((result: any) => {
       this.data.changeMessage(true);
       this.snack.open(result.message, '', { duration: 3000 });
@@ -75,6 +74,13 @@ export class IconComponent implements OnInit {
 
   pin(notes: any) {
     this.noteservice.pin(notes.notesId).subscribe((result: any) => {
+      this.data.changeMessage(true);
+      this.snack.open(result.message, '', { duration: 3000 });
+    });
+  }
+
+  unpin(notes: any) {
+    this.noteservice.unpin(notes.notesId).subscribe((result: any) => {
       this.data.changeMessage(true);
       this.snack.open(result.message, '', { duration: 3000 });
     });
@@ -91,6 +97,7 @@ export class IconComponent implements OnInit {
         this.snack.open(result.message, '', { duration: 3000 });
       });
   }
+
   openNoteDialog(notes: any) {
     let dialogref = this.dialog.open(NotesdialogComponent, { data: { notes } });
     dialogref.afterClosed().subscribe((result) => {

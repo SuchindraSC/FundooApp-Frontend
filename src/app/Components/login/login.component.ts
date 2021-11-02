@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.userService.Login(this.LoginForm.value).subscribe(
       (result: any) => {
         console.log(result)
-        this.snackBar.open(result.message, '', { duration: 30000 });
+        this.snackBar.open(result.message, '', { duration: 3000 });
         if (result.status == true) {
           this.LocalStorage(result.data, 'FundooUser');
           this.LocalStorage(result.tokenString, 'FundooNotesJWT')
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         console.log(error.error.message)
-        this.snackBar.open(error.error.message, '', { duration: 30000 });
+        this.snackBar.open(error.error.message, '', { duration: 3000 });
       }
     );
   }

@@ -7,13 +7,11 @@ import { NoteService } from 'src/app/Services/NoteService/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataserviceService } from 'src/app/Services/DataService/dataservice.service';
 
-
 @Component({
   selector: 'app-notesdialog',
   templateUrl: './notesdialog.component.html',
   styleUrls: ['./notesdialog.component.scss'],
 })
-
 export class NotesdialogComponent implements OnInit {
   dispNote = false;
   DescNote: string = '';
@@ -86,8 +84,10 @@ export class NotesdialogComponent implements OnInit {
         this.setColor
       )
       .subscribe((result: any) => {
-        this.dataService.changeMessage(true);
-        this.snack.open(result.message, '', { duration: 3000 });
+        if (result.status == true) {
+          this.dataService.changeMessage(true);
+          this.snack.open(result.message, '', { duration: 3000 });
+        }
       });
   }
 }
