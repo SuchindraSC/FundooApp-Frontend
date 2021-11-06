@@ -1,0 +1,55 @@
+<h2>Collaborator</h2>
+<mat-divider></mat-divider>
+<div class="owner-main">
+  <div class="owner">
+    <div>
+      <i class="material-icons ownerIcon">person</i>
+    </div>
+    <div>
+      <h3 class="o-name">
+        {{ data.name }}
+        <p style="font-style: italic; margin-bottom: 0px; margin-left: 8px">
+          (Owner)
+        </p>
+      </h3>
+      <p class="o-email">{{ data.email }}</p>
+    </div>
+  </div>
+  <div class="owner colab" *ngFor="let colab of data.collab">
+    <div class="colab-in">
+      <div>
+        <i class="material-icons ownerIcon">person</i>
+      </div>
+      <div style="display: flex; align-items: center">
+        <p class="o-email">{{ colab.receiverEmailid }}</p>
+      </div>
+    </div>
+    <i class="material-icons icon clear" (click)="clear(colab)">clear</i>
+  </div>
+  <div class="owner addperson">
+    <div>
+      <i class="material-icons add-icon ownerIcon">person_add_alt_1</i>
+      <input
+        type="email"
+        placeholder="Person or email to share with"
+        id="add-email"
+        class="add-email"
+        [(ngModel)]="colab_email"
+      />
+    </div>
+    <button mat-icon-button class="t-icons" style="margin-left: 10px">
+      <i
+        class="material-icons"
+        *ngIf="colab_email.length > 0"
+        (click)="addColab(colab_email); colab_email = ''"
+        style="margin-left: 10px"
+        >check</i
+      >
+    </button>
+  </div>
+</div>
+<div class="d-but">
+  <button mat-button (click)="save()">Save</button>
+  <button mat-button (click)="close()">Cancel</button>
+  <div></div>
+</div>

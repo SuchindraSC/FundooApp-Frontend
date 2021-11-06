@@ -184,7 +184,7 @@ export class NoteService {
       headers: headerObject,
       'Content-Type': 'application/json',
     };
-    console.log(this.user.userId)
+    console.log(this.user.userId);
     return this.httpService.delete(
       `${environment.baseUrl}api/emptytrash?userId=${parseInt(
         this.user.userId
@@ -318,6 +318,71 @@ export class NoteService {
         ''
       )}`,
       params,
+      true,
+      options
+    );
+  }
+
+  getCollaborators(data: any) {
+    //let params = new HttpParams().set('noteId', data);
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
+    return this.httpService.get(
+      `${environment.baseUrl}api/getcollaboratornotes?notesId=${data}`,
+      true,
+      options
+    );
+  }
+
+  addCollab(id: any, colab: any) {
+    let params = {
+      NotesId: id,
+      SenderEmailid: this.user.emailid,
+      ReceiverEmailid: colab,
+    };
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
+    return this.httpService.post(
+      `${environment.baseUrl}api/addcollaborator?NoteId=${id}`,
+      params,
+      true,
+      options
+    );
+  }
+
+  deleteColab(colab: any) {
+    //let params = new HttpParams().set('colId', colab);
+    this.token = localStorage.getItem('FundooNotesJWT');
+    console.log(this.token, this.token.replace(/['"]+/g, ''));
+    var headerObject = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + this.token.replace(/['"]+/g, '')
+    );
+
+    let options = {
+      headers: headerObject,
+      'Content-Type': 'application/json',
+    };
+    return this.httpService.delete(
+      `${environment.baseUrl}api/removecollaborator?CollaboratorId=${colab}`,
       true,
       options
     );

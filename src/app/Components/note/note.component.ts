@@ -4,14 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/Services/NoteService/note.service';
 import { DataserviceService } from 'src/app/Services/DataService/dataservice.service';
-  
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: '[Create-Note]',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
 })
-
 export class NoteComponent implements OnInit {
   dispNote = false;
   DescNote: string = '';
@@ -40,6 +39,7 @@ export class NoteComponent implements OnInit {
   pinned = false;
   isarchive = false;
   event: any;
+  collaboratorArr = [];
 
   constructor(
     private noteservice: NoteService,
@@ -62,10 +62,21 @@ export class NoteComponent implements OnInit {
           this.NotesForm.value,
           this.pinned,
           this.isarchive,
-          this.setColor,
+          this.setColor
         )
         .subscribe((result: any) => {
           if (result.status == true) {
+            if (this.collaboratorArr.length > 0) {
+              console.log(result);
+              for (let col of this.collaboratorArr) {
+                this.noteservice
+                  .addCollab(result.notesId, col)
+                  .subscribe((result: any) => {
+                    this.collaboratorArr = [];
+                    this.snackBar.open(result.message, '', { duration: 3000 });
+                  });
+              }
+            }
             this.data.changeMessage(true);
             this.snackBar.open(result.message, '', { duration: 3000 });
           }
@@ -79,7 +90,16 @@ export class NoteComponent implements OnInit {
     textArea.style.height = 'auto';
     textArea.style.height = textArea.scrollHeight + 'px';
   }
+
   checkMenu(event: any) {
     return event.target.value;
+  }
+
+  openDialog(){
+    let dialogref = this.dialog.open(DialogComponent, {data: {name: this.name, email: this.email, collab: this.collaboratorArr, delete:false}});
+    dialogref.afterClosed().subscribe((result)=>{
+      console.log(result);
+      this.collaboratorArr = result;
+    })
   }
 }

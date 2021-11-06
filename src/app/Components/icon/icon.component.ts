@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NoteService } from 'src/app/Services/NoteService/note.service';
 import { NotesdialogComponent } from '../notesdialog/notesdialog.component';
 import { DataserviceService } from 'src/app/Services/DataService/dataservice.service';
-
+import { DialogComponent } from '../dialog/dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-icon',
@@ -31,6 +32,7 @@ export class IconComponent implements OnInit {
   ];
   tickcolor = 'white';
   setColor = 'white';
+  collaboratorArr = [];
 
   constructor(
     private noteservice: NoteService,
@@ -46,8 +48,8 @@ export class IconComponent implements OnInit {
   }
   async getFromLocalStorage() {
     var user = JSON.parse(localStorage.getItem('FundooUser')!);
-    this.Name = user.userName;
-    this.Email = user.emailId;
+    this.Name = user.firstName + ' ' + user.lastName;
+    this.Email = user.emailid;
   }
 
   addTrash(note: any) {
@@ -103,5 +105,47 @@ export class IconComponent implements OnInit {
     dialogref.afterClosed().subscribe((result) => {
       console.log(result);
     });
+  }
+
+  openDialog(notes: any) {
+    this.noteservice
+      .getCollaborators(notes.notesId)
+      .subscribe((result: any) => {
+        console.log(result);
+        this.collaboratorArr = result.data;
+        if (this.collaboratorArr == null) {
+          this.collaboratorArr = [];
+        }
+        let dialogref = this.dialog.open(DialogComponent, {
+          data: {
+            name: this.Name,
+            email: this.Email,
+            collab: this.collaboratorArr,
+            notesId: notes.notesId,
+            delete: true,
+          },
+        });
+        dialogref.afterClosed().subscribe((result) => {
+          console.log(result);
+          this.collaboratorArr = result;
+          this.addColab(notes.notesId, this.collaboratorArr);
+        });
+      });
+  }
+
+  addColab(note: any, colab: any) {
+      for (let col of colab) {
+        console.log(col);
+        this.noteservice.addCollab(note, col.receiverEmailid).subscribe(
+          (result: any) => {
+            this.data.changeMessage(true);
+            this.snack.open(result.message, '', { duration: 3000 });
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error.error.message);
+            this.snack.open(error.error.message, '', { duration: 3000 });
+          }
+        );
+      }
   }
 }

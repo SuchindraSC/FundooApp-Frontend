@@ -1,0 +1,126 @@
+::ng-deep .mat-dialog-container {
+  overflow: hidden !important;
+  border-radius: 15px;
+  width: 40vw;
+}
+h2 {
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+mat-divider {
+  width: 95%;
+  margin-left: 10px;
+  margin-top: -10px;
+}
+.owner {
+  padding: 10px 10px 0 10px;
+  padding-left: 14px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.owner.colab {
+  justify-content: space-between;
+  padding-right: 15px;
+  align-items: center;
+  .colab-in {
+    display: flex;
+  }
+  .clear {
+    padding: 10px;
+    &:hover {
+      border-radius: 50%;
+      background-color: #eee;
+      cursor: pointer;
+    }
+  }
+}
+.o-name {
+  display: flex;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}
+.o-email {
+  padding-left: 5px;
+}
+.name-div {
+  display: flex;
+  align-items: center;
+}
+.ownerIcon {
+  padding: 10px;
+  margin-right: 5px;
+  border: 1px solid #a8aaad79;
+  border-radius: 50%;
+}
+.add-email {
+  border: none;
+  &:focus-visible {
+    outline: none;
+  }
+  width: 100%;
+  font-family: "Roboto" sans-serif;
+  font-size: 16px;
+}
+.addperson {
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 25px;
+  div {
+    display: flex;
+    width: 80%;
+  }
+}
+.d-but {
+  display: flex;
+  padding: 10px;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  background-color: #a8aaad79;
+  div {
+    width: 70%;
+  }
+}
+
+.t-icons {
+    display: flex;
+    align-items: center;
+  &:hover {
+    border-radius: 50%;
+    background-color: #eee;
+    cursor: pointer;
+  }
+}
+
+.owner-main {
+  overflow-y: auto;
+  max-height: 400px;
+}
+.owner-main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.owner-main::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.owner-main::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.owner-main::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@media only screen and (max-width: 850px) {
+  ::ng-deep .mat-dialog-container {
+    width: 60vw !important;
+  }
+}
+@media only screen and (max-width: 470px) {
+  ::ng-deep .mat-dialog-container {
+    width: 100vw !important;
+  }
+}

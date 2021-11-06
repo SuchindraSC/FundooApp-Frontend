@@ -37,6 +37,7 @@ import { NotesdialogComponent } from './Components/notesdialog/notesdialog.compo
 import { IconComponent } from './Components/icon/icon.component';
 import { GettrashComponent } from './Components/gettrash/gettrash.component';
 import { GetarchieveComponent } from './Components/getarchieve/getarchieve.component';
+import { DialogComponent } from './Components/dialog/dialog.component';
 
 
 
@@ -54,6 +55,7 @@ import { GetarchieveComponent } from './Components/getarchieve/getarchieve.compo
     IconComponent,
     GettrashComponent,
     GetarchieveComponent,
+    DialogComponent,
     //PageNotFoundComponent,
   ],
   imports: [
