@@ -17,8 +17,9 @@ export class NoteComponent implements OnInit {
   TitleNote: string = '';
   NotesForm!: FormGroup;
   animal: string = '';
-  name: string = JSON.parse(localStorage.getItem('FundooUser')!).userName;
-  email: string = JSON.parse(localStorage.getItem('FundooUser')!).emailId;
+  firstname: string = JSON.parse(localStorage.getItem('FundooUser')!).firstName;
+  lastname: string = JSON.parse(localStorage.getItem('FundooUser')!).lastName;
+  email: string = JSON.parse(localStorage.getItem('FundooUser')!).emailid;
   colourArr = [
     { colour: 'white', tooltip: 'White' },
     { colour: '#f28b82', tooltip: 'Red' },
@@ -96,7 +97,7 @@ export class NoteComponent implements OnInit {
   }
 
   openDialog(){
-    let dialogref = this.dialog.open(DialogComponent, {data: {name: this.name, email: this.email, collab: this.collaboratorArr, delete:false}});
+    let dialogref = this.dialog.open(DialogComponent, {data: {name: this.firstname+" "+this.lastname, email: this.email, collab: this.collaboratorArr, delete:false}});
     dialogref.afterClosed().subscribe((result)=>{
       console.log(result);
       this.collaboratorArr = result;

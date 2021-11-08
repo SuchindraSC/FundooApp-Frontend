@@ -134,18 +134,18 @@ export class IconComponent implements OnInit {
   }
 
   addColab(note: any, colab: any) {
-      for (let col of colab) {
-        console.log(col);
-        this.noteservice.addCollab(note, col.receiverEmailid).subscribe(
-          (result: any) => {
-            this.data.changeMessage(true);
-            this.snack.open(result.message, '', { duration: 3000 });
-          },
-          (error: HttpErrorResponse) => {
-            console.log(error.error.message);
-            this.snack.open(error.error.message, '', { duration: 3000 });
-          }
-        );
-      }
+    for (let col of colab) {
+      console.log(col);
+      this.noteservice.addCollab(note, col.receiverEmailid).subscribe(
+        (result: any) => {
+          this.data.changeMessage(true);
+          this.snack.open(result.message, '', { duration: 3000 });
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error.error.message);
+          this.snack.open(error.error.message, '', { duration: 3000 });
+        }
+      );
+    }
   }
 }

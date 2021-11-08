@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NoteService } from 'src/app/Services/NoteService/note.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataserviceService } from 'src/app/Services/DataService/dataservice.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-notesdialog',
@@ -17,8 +18,9 @@ export class NotesdialogComponent implements OnInit {
   DescNote: string = '';
   TitleNote: string = '';
   NotesForm!: FormGroup;
-  name: string = JSON.parse(localStorage.getItem('FundooUser')!).userName;
-  email: string = JSON.parse(localStorage.getItem('FundooUser')!).emailId;
+  firstname: string = JSON.parse(localStorage.getItem('FundooUser')!).firstName;
+  lastname: string = JSON.parse(localStorage.getItem('FundooUser')!).lastName;
+  email: string = JSON.parse(localStorage.getItem('FundooUser')!).emailid;
   colourArr = [
     { colour: 'white', tooltip: 'White' },
     { colour: '#f28b82', tooltip: 'Red' },
@@ -38,6 +40,7 @@ export class NotesdialogComponent implements OnInit {
   setColor = 'white';
   pinned = false;
   isarchive = false;
+  collaboratorArr = [];
 
   constructor(
     public dialog: MatDialog,
@@ -89,5 +92,19 @@ export class NotesdialogComponent implements OnInit {
           this.snack.open(result.message, '', { duration: 3000 });
         }
       });
+  }
+
+  openDialog() {
+    let dialogref = this.dialog.open(DialogComponent, {
+      data: {
+        name: this.firstname+" "+this.lastname,
+        email: this.email,
+        collab: this.collaboratorArr,
+      },
+    });
+    dialogref.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.collaboratorArr = result;
+    });
   }
 }
